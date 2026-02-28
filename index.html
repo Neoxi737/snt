@@ -1209,6 +1209,45 @@
           .catch(err => alert("Erreur d'accès"));
     }
 </script>
+<script>
+(function() {
+    // 1. On attend que la page soit chargée
+    window.addEventListener('load', function() {
+        // 2. On cherche ton logo PopReview
+        const logoContainer = document.querySelector('.font-orbitron.text-xl.text-white');
+        
+        if (logoContainer && window.innerWidth < 768) {
+            // 3. On crée le bouton cadenas
+            const lockBtn = document.createElement('button');
+            lockBtn.innerHTML = '🔐';
+            lockBtn.onclick = function() {
+                if (typeof openAuthModal === 'function') {
+                    openAuthModal();
+                } else {
+                    document.getElementById('auth-modal').style.display = 'flex';
+                }
+            };
+            
+            // 4. On lui donne du style Breaking Bad
+            lockBtn.style.marginLeft = "10px";
+            lockBtn.style.padding = "4px 8px";
+            lockBtn.style.fontSize = "16px";
+            lockBtn.style.backgroundColor = "rgba(0, 71, 49, 0.6)"; // Emerald transparent
+            lockBtn.style.border = "1px solid #FFD700"; // Bordure Mustard
+            lockBtn.style.borderRadius = "6px";
+            lockBtn.style.cursor = "pointer";
+            lockBtn.style.boxShadow = "0 0 10px rgba(0, 71, 49, 0.5)";
+            lockBtn.style.transition = "transform 0.2s";
+            
+            // Petit effet au clic
+            lockBtn.addEventListener('touchstart', () => lockBtn.style.transform = "scale(0.9)");
+            lockBtn.addEventListener('touchend', () => lockBtn.style.transform = "scale(1)");
 
+            // 5. On l'insère juste après le logo
+            logoContainer.parentNode.insertBefore(lockBtn, logoContainer.nextSibling);
+        }
+    });
+})();
+</script>
 </body>
 </html>
