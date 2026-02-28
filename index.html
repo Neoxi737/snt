@@ -1209,6 +1209,28 @@
           .catch(err => alert("Erreur d'accès"));
     }
 </script>
+<div class="md:hidden fixed top-4 left-4 z-[100] flex gap-2">
+  <button onclick="openAuthModal()" class="bg-emerald-700/90 backdrop-blur-md p-3 rounded-lg border border-yellow-500 shadow-lg shadow-emerald-900/50">
+    <span class="text-xl">🔐</span>
+  </button>
+  
+  <button onclick="toggleTheme()" class="bg-gray-800/90 backdrop-blur-md p-3 rounded-lg border border-gray-500 shadow-lg">
+    <span id="theme-icon-mobile" class="text-xl">🌙</span>
+  </button>
+</div>
 
+<script>
+  // On met à jour l'icône mobile aussi quand on change de thème
+  const originalToggle = toggleTheme;
+  toggleTheme = function() {
+      originalToggle();
+      const iconMobile = document.getElementById('theme-icon-mobile');
+      if (document.body.classList.contains('light-mode')) {
+          if(iconMobile) iconMobile.textContent = '☀️';
+      } else {
+          if(iconMobile) iconMobile.textContent = '🌙';
+      }
+  };
+</script>
 </body>
 </html>
